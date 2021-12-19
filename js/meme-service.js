@@ -23,28 +23,34 @@ var gImgs = [
     { id: 18, url: 'img/18.jpg', keywords: ['dog'] }
 ]
 
+
 var gMeme = {
     selectedImgId: null,
     selectedLineIdx: 0,
-    lines: [
+    lines: []
+}
+
+var gCurrLineIdx = 0
+
+function resetLines() {
+    gCurrLineIdx = 0
+    gMeme.lines =  [
         {
             txt: 'Text 1',
             size: 40,
-            baseline: 'top',
+            baseline: 'bottom',
             color: 'white',
-            y: 10
+            y: 60,
         },
         {
             txt: 'Text 2',
             size: 40,
             baseline: 'bottom',
             color: 'white',
-            y: gCanvas.height - 10
+            y: gCanvas.height - 20,
         }
     ]
 }
-
-var gCurrLineIdx = 0
 
 function getMeme() {
     return gMeme
@@ -55,6 +61,7 @@ function setLineTxt(txt) {
 }
 
 function setImg(id) {
+    resetLines()
     gMeme.selectedImgId = id
 }
 
@@ -67,8 +74,8 @@ function setSize(diff) {
 }
 
 function setLineIdx() {
-    if (!gCurrLineIdx) gCurrLineIdx++
-    else gCurrLineIdx--
+    if (gCurrLineIdx < gMeme.lines.length - 1) gCurrLineIdx++
+    else gCurrLineIdx = 0
 }
 
 function moveLine(diff) {
@@ -78,6 +85,10 @@ function moveLine(diff) {
 
 function deleteLine() {
     setLineTxt('')
+    renderMeme()
+    gMeme.lines.splice(gCurrLineIdx,1)
+    console.log('gMeme.lines:', gMeme.lines);
+    gCurrLineIdx = 0
 }
 
 function addLine() {
@@ -86,8 +97,10 @@ function addLine() {
         size: 40,
         baseline: 'center',
         color: 'white',
-        y: gCanvas.height / 2
+        y: gCanvas.height / 2,
     }
     gMeme.lines.push(newLine)
     gCurrLineIdx = gMeme.lines.length - 1
 }
+
+

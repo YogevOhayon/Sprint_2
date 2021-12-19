@@ -13,26 +13,25 @@
 
     <header class="main-header">
         <div class="header main-layout">
-            <div class="logo-container">
+            <div class="logo-container" onclick="moveToSection('gallery','meme-editor')">
                 <img src="img/Layer 2.png" alt="memegen" class="logo">
             </div>
             <ul class="nav-container clean-list">
-                <li><a href="#" onclick="window.location.reload(true)">Gallery</a></li>
-                <!-- <li><a href="#">About</a></li> -->
+                <li class="gallery-link active" onclick="moveToSection('gallery','meme-editor')"><a href="#">Gallery</a>
+                </li>
+                <li class="memes-link" onclick="moveToSection('meme-editor','gallery')"><a href="#">Memes</a></li>
+                </li>
             </ul>
         </div>
     </header>
 
-    <!-- <section class="search">SEARCH LINE</section> -->
-
-
     <main class='main'>
 
-        <div class="gallery">
+        <section class="gallery">
 
-        </div>
+        </section>
 
-        <div class="meme-editor" class="main-layot">
+        <section class="meme-editor" class="main-layot">
             <div class="canvas-container">
                 <canvas id="my-canvas" height="450" width="450"></canvas>
             </div>
@@ -52,17 +51,17 @@
                             value="#ff7f00" onchange="onSetColor(this.value)" /></div>
                     <div class="item-8"><button class="download"><a onclick="downloadCanvas(this)"
                                 download="myphoto">Download</a></button></div>
-                    <div class="item-9"><img src="img/up.png" onclick="onMoveLine(-1)" class="up"></div>
-                    <div class="item-10"><img src="img/down.png" onclick="onMoveLine(+1)" class="down"></div>
+                    <div class="item-9"><img src="img/up.png" onclick="onMoveLine(-5)" class="up"></div>
+                    <div class="item-10"><img src="img/down.png" onclick="onMoveLine(+5)" class="down"></div>
                 </div>
             </div>
-        </div>
+        </section>
 
     </main>
 
     <footer class="footer">
         <div class="main-layout footer-continer">
-            <div class="brightlogo"><img src="img/Layer 2.png" alt=""></div>
+            <div class="brightlogo"><img src="img/Layer 2.png"></div>
             <small class="end">
                 <p>All rights reserved </span></p>
             </small>
@@ -70,6 +69,7 @@
     </footer>
 
 
+    <script src="js/gallery-controller.js"></script>
     <script src="js/meme-controller.js"></script>
     <script src="js/meme-service.js"></script>
 
